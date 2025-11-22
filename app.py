@@ -1,7 +1,4 @@
-﻿"""
-Smart Resume AI - Main Application
-"""
-import time
+﻿import time
 from PIL import Image
 from jobs.job_search import render_job_search
 from datetime import datetime
@@ -39,7 +36,7 @@ import datetime
 
 # Set page config at the very beginning
 st.set_page_config(
-    page_title="HR MOM FRIEND",
+    page_title="Цифровой ассистент рекрутер",
     page_icon="",
     layout="wide"
 )
@@ -79,15 +76,13 @@ class ResumeApp:
             st.session_state.is_admin = False
 
         self.pages = {
-            "🏠 Домой": self.render_home,
-            "🔍 Анализировать Резюме": self.render_analyzer,
-            "📝 Сформировать Резюме": self.render_builder,
-            "📊 Статистика": self.render_dashboard,
-            "🎯 Найти Работу": self.render_job_search,
-            "💬 Обратная Связь": self.render_feedback_page,
-            "ℹ️ Инфа": self.render_about
+            "Домой": self.render_home,
+            "Анализ Резюме": self.render_analyzer,
+            "Создать Резюме": self.render_builder,
+            "Обратная Связь": self.render_feedback_page,
+            "Инфо": self.render_about
         }
-
+         
         # Initialize dashboard manager
         self.dashboard_manager = DashboardManager()
 
@@ -125,11 +120,11 @@ class ResumeApp:
             }
 
     def load_lottie_url(self, url: str):
-        """Load Lottie animation from URL"""
+        """Load image from URL"""
         r = requests.get(url)
         if r.status_code != 200:
             return None
-        return r.json()
+        return r.content
 
     def apply_global_styles(self):
         st.markdown("""
@@ -480,7 +475,7 @@ class ResumeApp:
             st.markdown("""
             <p style='text-align: center;'>
                 Powered by <b>Coffee</b> and <b>Google Gemini AI</b> | Developed by 
-                <a href="https://www.linkedin.com/in/patel-hetkumar-sandipbhai-8b110525a/" target="_blank" style='text-decoration: none; color: #FFFFFF'>
+                <a href="" target="_blank" style='text-decoration: none; color: #FFFFFF'>
                     <b>ArchBWT</b>
                 </a>
             </p>
@@ -557,7 +552,7 @@ class ResumeApp:
     def handle_resume_upload(self):
         """Handle resume upload and analysis"""
         uploaded_file = st.file_uploader(
-            "Upload your resume", type=['pdf', 'docx'])
+            "Upload your resume", type=['pdf'])
 
         if uploaded_file is not None:
             try:
@@ -1036,7 +1031,7 @@ class ResumeApp:
                     margin: 0 auto 1.5rem;
                     display: block;
                     object-fit: cover;
-                    border: 4px solid #4CAF50;
+                    border: 4px solid #0092b4;
                 }
 
                 .profile-name {
@@ -1047,7 +1042,7 @@ class ResumeApp:
 
                 .profile-title {
                     font-size: 1.2rem;
-                    color: #4CAF50;
+                    color: rgb(61, 157, 243);
                     margin-bottom: 1.5rem;
                 }
 
@@ -1099,7 +1094,7 @@ class ResumeApp:
 
                 .vision-icon {
                     font-size: 2.5rem;
-                    color: #4CAF50;
+                    color: rgb(61, 157, 243);
                     margin-bottom: 1rem;
                 }
 
@@ -1144,7 +1139,7 @@ class ResumeApp:
         # Hero Section
         st.markdown("""
             <div class="hero-section">
-                <h1 class="hero-title">HR Маминой Подруги</h1>
+                <h1 class="hero-title">Цифровой ассистент рекрутер</h1>
                 <p class="hero-subtitle">Мощный HR на базе искусственного интеллекта для оптимизации резюме</p>
             </div>
         """, unsafe_allow_html=True)
@@ -1152,24 +1147,49 @@ class ResumeApp:
         # Profile Section
         st.markdown(f"""
             <div class="profile-section">
-                <img src="{image_base64 if image_base64 else 'https://camo.githubusercontent.com/cf7fdac7c190a60c2e1855e9d114977ce3a3e45bd50924ef7063ef73b7ff95a7/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f616c6f68652f617661746172732f706e672f76696272656e745f32372e706e67'}"
+                <img src="{image_base64 if image_base64 else 'https://i.postimg.cc/WzpGRJm2/Maksim.png'}"
                      alt="Het Patel"
                      class="profile-image"
-                     onerror="this.onerror=null; this.src='https://camo.githubusercontent.com/cf7fdac7c190a60c2e1855e9d114977ce3a3e45bd50924ef7063ef73b7ff95a7/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f616c6f68652f617661746172732f706e672f76696272656e745f32372e706e67';">
+                     onerror="this.onerror=null; this.src='https://i.postimg.cc/WzpGRJm2/Maksim.png';">
                 <h2 class="profile-name">Максим Кузнецов</h2>
                 <p class="profile-title">Frontend Developer/DevOps engineer & AI/ML Enthusiast</p>
                 <div class="social-links">
-                    <a href="https://github.com/ArchBWT" class="social-link" target="_blank">
-                        <i class="fab fa-github"></i>
+                    <a href="https://t.me/freedomcrue" class="social-link" target="_blank">
+                        <i class="fab fa-telegram"></i>
                     </a>
                     <a href="mailto:archangelbwt@outlook.com" class="social-link" target="_blank">
                         <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://github.com/ArchBWT" class="social-link" target="_blank">
+                        <i class="fab fa-github"></i>
                     </a>
                 </div>
                 <p class="bio-text">
                     Я — увлечённый DevOps и frontend-разработчик с глубоким интересом к искусственному интеллекту и машинному обучению.
                     Мне всегда было важно создавать не просто интерфейсы, а умные и интуитивные цифровые продукты, которые вдохновляют людей и делают технологии ближе.
-                    Так появилась HR Маминой Подруги — платформа, которая помогает соискателям осознанно строить карьеру.
+                    Так появился Цифровой ассистент рекрутер — платформа, которая помогает соискателям осознанно строить карьеру.
+                </p>
+            </div>
+
+            <div class="profile-section">
+                <img src="{image_base64 if image_base64 else 'https://i.postimg.cc/V6X352b4/Elizaveta.png'}"
+                     alt="Het Patel"
+                     class="profile-image"
+                     onerror="this.onerror=null; this.src='https://i.postimg.cc/V6X352b4/Elizaveta.png';">
+                <h2 class="profile-name">Елизавета Тареева</h2>
+                <p class="profile-title">UI/UX & Product Manager</p>
+                <div class="social-links">
+                    <a href="https://t.me/elisaveta_tareeva" class="social-link" target="_blank">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="mailto:tareeva03@mail.ru" class="social-link" target="_blank">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+                <p class="bio-text">
+                    Я - специалист по управлению IT-проектами, также увлекаюсь работой с уникальными дизайнами. 
+                    В рамках «Цифрового ассистента рекрутера» занимаюсь координацией работы команды; созданием тактического и стратегического бизнес-планов команды и сопроводительной документации, 
+                    а также разработкой визуальных концепций и макетов.
                 </p>
             </div>
 
@@ -1183,11 +1203,19 @@ class ResumeApp:
             <div class="vision-section">
                 <i class="fas fa-lightbulb vision-icon"></i>
                 <h2 class="vision-title">Наше Видение</h2>
-                <p class="vision-text">
-                    "HR маминой подруги отражает наше видение демократизации карьерного роста с помощью технологий. Объединяя передовые решения искусственного интеллекта с интуитивным дизайном, эта платформа помогает соискателям на любом этапе карьеры раскрыть свой настоящий потенциал и выделиться на современном конкурентном рынке труда."
+                <p class="vision-text" style="text-align: center;">
+                    "Цифровой ассистент рекрутер отражает наше видение демократизации карьерного роста с помощью технологий. Объединяя передовые решения искусственного интеллекта с интуитивным дизайном, эта платформа помогает соискателям на любом этапе карьеры раскрыть свой настоящий потенциал и выделиться на современном конкурентном рынке труда."
+                    «Кликните на эту иконку, чтобы заглянуть в статью!»
                 </p>
+            </a>
+                    <div class="social-links">
+                    <a href="https://vk.com/@assistent_rekrutera-cifrovoi-assistent-rekrutera" class="social-link" target="_blank">
+                        <i class="fab fa-vk"></i>
+                    </a>  
             </div>
         """, unsafe_allow_html=True)
+
+        
 
 
     def render_analyzer(self):
@@ -1202,7 +1230,7 @@ class ResumeApp:
 
         # Create tabs for Normal Analyzer and AI Analyzer
         analyzer_tabs = st.tabs(["Стандартный Анализатор", "Анализатор с ИИ"])
-
+        
         with analyzer_tabs[0]:
             # Job Role Selection
             categories = list(self.job_roles.keys())
@@ -1364,9 +1392,7 @@ class ResumeApp:
 
                         # Show results based on document type
                         if analysis.get('document_type') != 'resume':
-                            st.error(
-    f"⚠️ This appears to be a {
-        analysis['document_type']} document, not a resume!")
+                            st.error(f"⚠️ This appears to be a {analysis['document_type']} document, not a resume!")
                             st.warning(
                                 "Пожалуйста, загрузите корректное резюме для анализа.")
                             return
@@ -1377,7 +1403,7 @@ class ResumeApp:
                         # ATS Score Card with circular progress
                         st.markdown("""
                         <div class="feature-card">
-                            <h2>ATS Score</h2>
+                            <h2>Оценка ATS</h2>
                             <div style="position: relative; width: 150px; height: 150px; margin: 0 auto;">
                                 <div style="
                                     position: absolute;
@@ -1421,8 +1447,8 @@ class ResumeApp:
                             score=analysis['ats_score'],
                             color='#4CAF50' if analysis['ats_score'] >= 80 else '#FFA500' if analysis[
                                 'ats_score'] >= 60 else '#FF4444',
-                            status='Excellent' if analysis['ats_score'] >= 80 else 'Good' if analysis[
-                                'ats_score'] >= 60 else 'Needs Improvement'
+                            status='Excellent' if analysis['ats_score'] >= 80 else 'Хорошо' if analysis[
+                                'ats_score'] >= 60 else 'Требует улучшения'
                         ), unsafe_allow_html=True)
 
                         st.markdown("</div>", unsafe_allow_html=True)
@@ -1432,14 +1458,14 @@ class ResumeApp:
                         # Skills Match Card
                         st.markdown("""
                         <div class="feature-card">
-                            <h2>Skills Match</h2>
+                            <h2>Соответствие навыков</h2>
                         """, unsafe_allow_html=True)
 
                         st.metric(
-                            "Keyword Match", f"{int(analysis.get('keyword_match', {}).get('score', 0))}%")
+                            "Совпадение ключевых слов", f"{int(analysis.get('keyword_match', {}).get('score', 0))}%")
 
                         if analysis['keyword_match']['missing_skills']:
-                            st.markdown("#### Missing Skills:")
+                            st.markdown("#### Отсутствующие навыки:")
                             for skill in analysis['keyword_match']['missing_skills']:
                                 st.markdown(f"- {skill}")
 
@@ -1449,12 +1475,12 @@ class ResumeApp:
                         # Format Score Card
                         st.markdown("""
                         <div class="feature-card">
-                            <h2>Format Analysis</h2>
+                            <h2>Анализ форматов</h2>
                         """, unsafe_allow_html=True)
 
-                        st.metric("Format Score",
+                        st.metric("Оценка форматов",
                                   f"{int(analysis.get('format_score', 0))}%")
-                        st.metric("Section Score",
+                        st.metric("Оценка разделов",
                                   f"{int(analysis.get('section_score', 0))}%")
 
                         st.markdown("</div>", unsafe_allow_html=True)
@@ -1462,14 +1488,14 @@ class ResumeApp:
                         # Suggestions Card with improved UI
                         st.markdown("""
                         <div class="feature-card">
-                            <h2>📋 Resume Improvement Suggestions</h2>
+                            <h2>Рекомендации по улучшению резюме</h2>
                         """, unsafe_allow_html=True)
 
                             # Contact Section
                         if analysis.get('contact_suggestions'):
                                 st.markdown("""
                                 <div style='background-color: #1e1e1e; padding: 15px; border-radius: 10px; margin: 10px 0;'>
-                                    <h3 style='color: #4CAF50; margin-bottom: 10px;'>📞 Contact Information</h3>
+                                    <h3 style='color: #4CAF50; margin-bottom: 10px;'>Контактная информация</h3>
                                     <ul style='list-style-type: none; padding-left: 0;'>
                                 """, unsafe_allow_html=True)
                                 for suggestion in analysis.get(
@@ -1484,7 +1510,7 @@ class ResumeApp:
                         if analysis.get('summary_suggestions'):
                                 st.markdown("""
                                 <div style='background-color: #1e1e1e; padding: 15px; border-radius: 10px; margin: 10px 0;'>
-                                    <h3 style='color: #4CAF50; margin-bottom: 10px;'>📝 Professional Summary</h3>
+                                    <h3 style='color: #4CAF50; margin-bottom: 10px;'>Профессиональное описание</h3>
                                     <ul style='list-style-type: none; padding-left: 0;'>
                                 """, unsafe_allow_html=True)
                                 for suggestion in analysis.get(
@@ -1500,7 +1526,7 @@ class ResumeApp:
                             'skills_suggestions') or analysis['keyword_match']['missing_skills']:
                                 st.markdown("""
                                 <div style='background-color: #1e1e1e; padding: 15px; border-radius: 10px; margin: 10px 0;'>
-                                    <h3 style='color: #4CAF50; margin-bottom: 10px;'>🎯 Skills</h3>
+                                    <h3 style='color: #4CAF50; margin-bottom: 10px;'>Навыки</h3>
                                     <ul style='list-style-type: none; padding-left: 0;'>
                                 """, unsafe_allow_html=True)
                                 for suggestion in analysis.get(
@@ -1510,7 +1536,7 @@ class ResumeApp:
      unsafe_allow_html=True)
                                 if analysis['keyword_match']['missing_skills']:
                                     st.markdown(
-    "<li style='margin-bottom: 8px;'>✓ Consider adding these relevant skills:</li>",
+    "<li style='margin-bottom: 8px;'>✓ Рассмотрите возможность добавления этих релевантных навыков:</li>",
      unsafe_allow_html=True)
                                     for skill in analysis['keyword_match']['missing_skills']:
                                         st.markdown(
@@ -1523,7 +1549,7 @@ class ResumeApp:
                         if analysis.get('experience_suggestions'):
                                 st.markdown("""
                                 <div style='background-color: #1e1e1e; padding: 15px; border-radius: 10px; margin: 10px 0;'>
-                                    <h3 style='color: #4CAF50; margin-bottom: 10px;'>💼 Work Experience</h3>
+                                    <h3 style='color: #4CAF50; margin-bottom: 10px;'>Опыт работы</h3>
                                     <ul style='list-style-type: none; padding-left: 0;'>
                                 """, unsafe_allow_html=True)
                                 for suggestion in analysis.get(
@@ -1538,7 +1564,7 @@ class ResumeApp:
                         if analysis.get('education_suggestions'):
                                 st.markdown("""
                                 <div style='background-color: #1e1e1e; padding: 15px; border-radius: 10px; margin: 10px 0;'>
-                                    <h3 style='color: #4CAF50; margin-bottom: 10px;'>🎓 Education</h3>
+                                    <h3 style='color: #4CAF50; margin-bottom: 10px;'>Образование</h3>
                                     <ul style='list-style-type: none; padding-left: 0;'>
                                 """, unsafe_allow_html=True)
                                 for suggestion in analysis.get(
@@ -1553,7 +1579,7 @@ class ResumeApp:
                         if analysis.get('format_suggestions'):
                                 st.markdown("""
                                 <div style='background-color: #1e1e1e; padding: 15px; border-radius: 10px; margin: 10px 0;'>
-                                    <h3 style='color: #4CAF50; margin-bottom: 10px;'>📄 Formatting</h3>
+                                    <h3 style='color: #4CAF50; margin-bottom: 10px;'>Форматирование</h3>
                                     <ul style='list-style-type: none; padding-left: 0;'>
                                 """, unsafe_allow_html=True)
                                 for suggestion in analysis.get(
@@ -1569,7 +1595,7 @@ class ResumeApp:
                         # Course Recommendations
                     st.markdown("""
                         <div class="feature-card">
-                            <h2>📚 Recommended Courses</h2>
+                            <h2>Рекомендуем курсы</h2>
                         """, unsafe_allow_html=True)
 
                         # Get courses based on role and category
@@ -1587,7 +1613,7 @@ class ResumeApp:
                                 st.markdown(f"""
                                 <div style='background-color: #1e1e1e; padding: 15px; border-radius: 10px; margin: 10px 0;'>
                                     <h4>{course[0]}</h4>
-                                    <a href='{course[1]}' target='_blank'>View Course</a>
+                                    <a href='{course[1]}' target='_blank'>Просмотреть курс</a>
                                 </div>
                                 """, unsafe_allow_html=True)
 
@@ -1596,10 +1622,10 @@ class ResumeApp:
                         # Learning Resources
                     st.markdown("""
                         <div class="feature-card">
-                            <h2>📺 Helpful Videos</h2>
+                            <h2>Полезные видео</h2>
                         """, unsafe_allow_html=True)
 
-                    tab1, tab2 = st.tabs(["Resume Tips", "Interview Tips"])
+                    tab1, tab2 = st.tabs(["Советы по резюме", "Советы по собеседованию"])
 
                     with tab1:
                             # Resume Videos
@@ -1633,30 +1659,30 @@ class ResumeApp:
             ai_model = st.selectbox(
                 "Выберите ИИ модель",
                 ["Google Gemini"],
-                help="Choose the AI model to analyze your resume"
+                help="Выберите модель ИИ, чтобы проанализировать ваше резюме"
             )
              
             # Add job description input option
-            use_custom_job_desc = st.checkbox("Use custom job description", value=False, 
-                                             help="Enable this to provide a specific job description for more targeted analysis")
+            use_custom_job_desc = st.checkbox("Использовать своё собственное описание должности", value=False, 
+                                             help="Включите это, чтобы указать конкретное описание вакансии для более точного анализа.")
             
             custom_job_description = ""
             if use_custom_job_desc:
                 custom_job_description = st.text_area(
-                    "Paste the job description here",
+                    "Вставьте описание вакансии сюда",
                     height=200,
-                    placeholder="Paste the full job description from the company here for more targeted analysis...",
-                    help="Providing the actual job description will help the AI analyze your resume specifically for this position"
+                    placeholder="Вставьте полное описание вакансии от компании сюда для более точного анализа...",
+                    help="Предоставление реального описания вакансии поможет ИИ проанализировать ваше резюме именно для этой позиции"
                 )
                 
                 st.markdown("""
                 <div style='background-color: #2e7d32; padding: 15px; border-radius: 10px; margin: 10px 0;'>
-                    <p><i class="fas fa-lightbulb"></i> <strong>Pro Tip:</strong> Including the actual job description significantly improves the accuracy of the analysis and provides more relevant recommendations tailored to the specific position.</p>
+                    <p><i class="fas fa-lightbulb"></i> <strong>Совет от профи:</strong> Включение фактического описания должности значительно повышает точность анализа и обеспечивает более релевантные рекомендации, адаптированные под конкретную позицию.</p>
                 </div>
                 """, unsafe_allow_html=True)
              
                         # Add AI Analyzer Stats in an expander
-            with st.expander("📊 AI Analyzer Statistics", expanded=False):
+            with st.expander("📊 Ваша Статистика ИИ-анализатора", expanded=False):
                 try:
                     # Add a reset button for admin users
                     if st.session_state.get('is_admin', False):
@@ -1717,7 +1743,7 @@ class ResumeApp:
                         with col1:
                             st.markdown(f"""
                             <div class="stats-card">
-                                <div class="stats-label">Total AI Analyses</div>
+                                <div class="stats-label">Общее количество анализов ИИ</div>
                                 <div class="stats-value">{ai_stats["total_analyses"]}</div>
                             </div>
                             """, unsafe_allow_html=True)
@@ -1728,7 +1754,7 @@ class ResumeApp:
                                 "average_score"] >= 60 else "#FF5252"
                             st.markdown(f"""
                             <div class="stats-card" style="background: linear-gradient(135deg, #2c3e50, {score_color});">
-                                <div class="stats-label">Average Resume Score</div>
+                                <div class="stats-label">Средняя оценка резюме</div>
                                 <div class="stats-value">{ai_stats["average_score"]}/100</div>
                             </div>
                             """, unsafe_allow_html=True)
@@ -1741,7 +1767,7 @@ class ResumeApp:
                                 value=ai_stats["average_score"],
                                 domain={'x': [0, 1], 'y': [0, 1]},
                                 title={
-    'text': "Score", 'font': {
+                 'font': {
         'size': 14, 'color': 'white'}},
                                 gauge={
                                     'axis': {'range': [0, 100], 'tickwidth': 1, 'tickcolor': "white"},
@@ -1749,14 +1775,6 @@ class ResumeApp:
                                     'bgcolor': "rgba(0,0,0,0)",
                                     'borderwidth': 2,
                                     'bordercolor': "white",
-                                    'steps': [
-                                        {'range': [
-                                            0, 40], 'color': 'rgba(255, 82, 82, 0.3)'},
-                                        {'range': [
-                                            40, 70], 'color': 'rgba(255, 235, 59, 0.3)'},
-                                        {'range': [
-                                            70, 100], 'color': 'rgba(56, 239, 125, 0.3)'}
-                                    ],
                                 }
                             ))
 
@@ -1772,7 +1790,7 @@ class ResumeApp:
 
                         # Display model usage with enhanced visualization
                         if ai_stats["model_usage"]:
-                            st.markdown("### 🤖 Model Usage")
+                            st.markdown("### 🤖 Использованные модели")
                             model_data = pd.DataFrame(ai_stats["model_usage"])
 
                             # Create a more colorful pie chart
@@ -1808,7 +1826,7 @@ class ResumeApp:
                                     x=0.5
                                 ),
                                 title={
-                                    'text': 'AI Model Distribution',
+                                    'text': 'Какие ИИ модели были использованы',
                                     'y': 0.95,
                                     'x': 0.5,
                                     'xanchor': 'center',
@@ -1821,7 +1839,7 @@ class ResumeApp:
 
                         # Display top job roles with enhanced visualization
                         if ai_stats["top_job_roles"]:
-                            st.markdown("### 🎯 Top Job Roles")
+                            st.markdown("### 🎯 Самые Популярные Направления")
                             roles_data = pd.DataFrame(
                                 ai_stats["top_job_roles"])
 
@@ -1849,7 +1867,7 @@ class ResumeApp:
                                 plot_bgcolor='rgba(0,0,0,0)',
                                 font=dict(color="#ffffff", size=14),
                                 title={
-                                    'text': 'Most Analyzed Job Roles',
+                                    'text': 'Наиболее Анализируемые Должности',
                                     'y': 0.95,
                                     'x': 0.5,
                                     'xanchor': 'center',
@@ -1862,7 +1880,7 @@ class ResumeApp:
                                     tickfont=dict(size=12)
                                 ),
                                 yaxis=dict(
-                                    title="Number of Analyses",
+                                    title="Количество анализов",
                                     gridcolor="rgba(255, 255, 255, 0.1)"
                                 ),
                                 coloraxis_showscale=False
@@ -1872,9 +1890,9 @@ class ResumeApp:
 
                             # Add a timeline chart for analysis over time (mock
                             # data for now)
-                            st.markdown("### 📈 Analysis Trend")
+                            st.markdown("### 📈 Динамика анализа")
                             st.info(
-                                "This is a conceptual visualization. To implement actual time-based analysis, additional data collection would be needed.")
+                                "Это концептуальная визуализация. Для реализации фактического анализа по времени потребуется дополнительный сбор данных.")
 
                             # Create mock data for timeline
                             import datetime
@@ -1930,7 +1948,7 @@ class ResumeApp:
                                 plot_bgcolor='rgba(0,0,0,0)',
                                 font=dict(color="#ffffff", size=14),
                                 title={
-                                    'text': 'Analysis Activity (Last 7 Days)',
+                                    'text': 'Активность анализа (за последние 7 дней)',
                                     'y': 0.95,
                                     'x': 0.5,
                                     'xanchor': 'center',
@@ -1942,7 +1960,7 @@ class ResumeApp:
                                     gridcolor="rgba(255, 255, 255, 0.1)"
                                 ),
                                 yaxis=dict(
-                                    title="Number of Analyses",
+                                    title="Количество анализов",
                                     gridcolor="rgba(255, 255, 255, 0.1)"
                                 )
                             )
@@ -1953,7 +1971,7 @@ class ResumeApp:
                         if ai_stats["score_distribution"]:
                             st.markdown("""
                             <h3 style='text-align: center; margin-bottom: 20px; background: linear-gradient(90deg, #4b6cb7, #182848); padding: 15px; border-radius: 10px; color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.2);'>
-                                📊 Score Distribution Analysis
+                                📊 Анализ распределения оценок
                             </h3>
                             """, unsafe_allow_html=True)
 
@@ -1975,8 +1993,8 @@ class ResumeApp:
                                     "81-100": "#38ef7d"
                                 },
                                 labels={
-    "range": "Score Range",
-     "count": "Number of Resumes"},
+    "range": "Диапазон оценок",
+     "count": "Количество резюме"},
                                 text="count"  # Display count values on bars
                             )
 
@@ -2008,7 +2026,7 @@ class ResumeApp:
                                 # },
                                 xaxis=dict(
                                     title=dict(
-    text="Score Range", font=dict(
+    text="Диапазон оценок", font=dict(
         size=16, color="white")),
                                     categoryorder="array",
                                     categoryarray=[
@@ -2018,7 +2036,7 @@ class ResumeApp:
                                 ),
                                 yaxis=dict(
                                     title=dict(
-    text="Number of Resumes", font=dict(
+    text="Количество резюме", font=dict(
         size=16, color="white")),
                                     tickfont=dict(size=14, color="white"),
                                     gridcolor="rgba(255, 255, 255, 0.1)",
@@ -2054,11 +2072,11 @@ class ResumeApp:
                                     y=1.12,
                                     xref="paper",
                                     yref="paper",
-                                    text=f"Most resumes fall in the {max_range} score range",
+                                    text=f"Большинство резюме попадают в диапазон {max_range} диапазон оценок",
                                     showarrow=False,
-                                    font=dict(size=14, color="#FFEB3B"),
+                                    font=dict(size=14, color="#FFFFFF"),
                                     bgcolor="rgba(0,0,0,0.5)",
-                                    bordercolor="#FFEB3B",
+                                    bordercolor="#FFFFFF",
                                     borderwidth=1,
                                     borderpad=4,
                                     opacity=0.8
@@ -2073,9 +2091,7 @@ class ResumeApp:
 
                             # Add descriptive text below the chart
                             st.markdown("""
-                            <p style='color: white; text-align: center; font-style: italic; margin-top: 10px;'>
-                                This chart shows the distribution of resume scores across different ranges, helping identify common performance levels.
-                            </p>
+                                        
                             </div>
                             """, unsafe_allow_html=True)
 
@@ -2083,7 +2099,7 @@ class ResumeApp:
                         if ai_stats["recent_analyses"]:
                             st.markdown("""
                             <h3 style='text-align: center; margin-bottom: 20px; background: linear-gradient(90deg, #4b6cb7, #182848); padding: 15px; border-radius: 10px; color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.2);'>
-                                🕒 Recent Resume Analyses
+                                🕒 Недавние анализы резюме
                             </h3>
                             """, unsafe_allow_html=True)
 
@@ -2194,10 +2210,10 @@ class ResumeApp:
                             <div style='background: linear-gradient(135deg, #1e3c72, #2a5298); padding: 20px; border-radius: 15px; margin: 10px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.2);'>
                             <table class="modern-analyses-table">
                                 <tr>
-                                    <th>AI Model</th>
-                                    <th>Score</th>
-                                    <th>Job Role</th>
-                                    <th>Date</th>
+                                    <th>Модель ИИ</th>
+                                    <th>Оценка</th>
+                                    <th>Стек</th>
+                                    <th>Дата</th>
                                 </tr>
                             """, unsafe_allow_html=True)
 
@@ -2231,9 +2247,6 @@ class ResumeApp:
                             st.markdown("""
                             </table>
 
-                            <p style='color: white; text-align: center; font-style: italic; margin-top: 15px;'>
-                                These are the most recent resume analyses performed by our AI models.
-                            </p>
                             </div>
                             """, unsafe_allow_html=True)
                     else:
@@ -2278,13 +2291,13 @@ class ResumeApp:
     )
             else:
                 # Add a prominent analyze button
-                analyze_ai = st.button("🤖 Analyze with AI",
+                analyze_ai = st.button("🤖 Проанализировать с помощью ИИ",
                                 type="primary",
                                 use_container_width=True,
                                 key="analyze_ai_button")
 
                 if analyze_ai:
-                    with st.spinner(f"Analyzing your resume with {ai_model}..."):
+                    with st.spinner(f"Анализируем ваше резюме с помощью {ai_model}..."):
                         # Get file content
                         text = ""
                         try:
@@ -2303,7 +2316,7 @@ class ResumeApp:
                         # Analyze with AI
                         try:
                             # Show a loading animation
-                            with st.spinner("🧠 AI is analyzing your resume..."):
+                            with st.spinner("🧠 ИИ анализирует ваше резюме..."):
                                 progress_bar = st.progress(0)
                                 
                                 # Get the selected model
@@ -2373,7 +2386,7 @@ class ResumeApp:
                                 
                                 # Display the analysis result
                                 if analysis_result and "error" not in analysis_result:
-                                    st.success("✅ Analysis complete!")
+                                    st.success("✅ Анализ завершён!")
                                     
                                     # Extract data from the analysis
                                     full_response = analysis_result.get(
@@ -2389,7 +2402,7 @@ class ResumeApp:
                                     st.session_state['full_analysis'] = full_response
                                     
                                     # Display the analysis in a nice format
-                                    st.markdown("## Full Analysis Report")
+                                    st.markdown("## Полный аналитический отчёт")
                                     
                                     # Get current date
                                     from datetime import datetime
@@ -2398,15 +2411,15 @@ class ResumeApp:
                                     # Create a modern styled header for the report
                                     st.markdown(f"""
                                     <div style="background-color: #262730; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
-                                        <h2 style="color: #ffffff; margin-bottom: 10px;">AI Resume Analysis Report</h2>
+                                        <h2 style="color: #ffffff; margin-bottom: 10px;">Отчёт об анализе резюме с помощью ИИ</h2>
                                         <div style="display: flex; flex-wrap: wrap; gap: 20px;">
                                             <div style="flex: 1; min-width: 200px;">
-                                                <p style="color: #ffffff;"><strong>Job Role:</strong> {job_role if job_role else "Not specified"}</p>
-                                                <p style="color: #ffffff;"><strong>Analysis Date:</strong> {current_date}</p>                                                                                                                                        </div>
+                                                <p style="color: #ffffff;"><strong>Стек:</strong> {job_role if job_role else "Не выбрано"}</p>
+                                                <p style="color: #ffffff;"><strong>Дата анализа:</strong> {current_date}</p>                                                                                                                                        </div>
                                             <div style="flex: 1; min-width: 200px;">
-                                                <p style="color: #ffffff;"><strong>AI Model:</strong> {model_used}</p>
-                                                <p style="color: #ffffff;"><strong>Overall Score:</strong> {resume_score}/100 - {"Excellent" if resume_score >= 80 else "Good" if resume_score >= 60 else "Needs Improvement"}</p>
-                                                {f'<p style="color: #4CAF50;"><strong>✓ Custom Job Description Used</strong></p>' if st.session_state.get('used_custom_job_desc', False) else ''}
+                                                <p style="color: #ffffff;"><strong>Модель ИИ:</strong> {model_used}</p>
+                                                <p style="color: #ffffff;"><strong>Итоговая оценка:</strong> {resume_score}/100 - {"Превосходно" if resume_score >= 80 else "Хорошо" if resume_score >= 60 else "Требует улучшения"}</p>
+                                                {f'<p style="color: #4CAF50;"><strong>✓ Использовано пользовательское описание вакансии</strong></p>' if st.session_state.get('used_custom_job_desc', False) else ''}
                                     </div>
                                     """, unsafe_allow_html=True)
                                     
@@ -2421,7 +2434,7 @@ class ResumeApp:
                                             mode="gauge+number",
                                             value=resume_score,
                                             domain={'x': [0, 1], 'y': [0, 1]},
-                                            title={'text': "Resume Score", 'font': {'size': 16}},
+                                            title={'text': "Оценка резюме", 'font': {'size': 16}},
                                             gauge={
                                                 'axis': {'range': [0, 100], 'tickwidth': 1},
                                                 'bar': {'color': "#4CAF50" if resume_score >= 80 else "#FFA500" if resume_score >= 60 else "#FF4444"},
@@ -2449,7 +2462,7 @@ class ResumeApp:
                                         
                                         st.plotly_chart(fig1, use_container_width=True)
                                         
-                                        status = "Excellent" if resume_score >= 80 else "Good" if resume_score >= 60 else "Needs Improvement"
+                                        status = "Отлично" if resume_score >= 80 else "Хорошо" if resume_score >= 60 else "Требует улучшения"
                                         st.markdown(f"<div style='text-align: center; font-weight: bold;'>{status}</div>", unsafe_allow_html=True)
                                     
                                     with col2:
@@ -2458,7 +2471,7 @@ class ResumeApp:
                                             mode="gauge+number",
                                             value=ats_score,
                                             domain={'x': [0, 1], 'y': [0, 1]},
-                                            title={'text': "ATS Optimization Score", 'font': {'size': 16}},
+                                            title={'text': "Оценка оптимизации для ATS", 'font': {'size': 16}},
                                             gauge={
                                                 'axis': {'range': [0, 100], 'tickwidth': 1},
                                                 'bar': {'color': "#4CAF50" if ats_score >= 80 else "#FFA500" if ats_score >= 60 else "#FF4444"},
@@ -2486,7 +2499,7 @@ class ResumeApp:
                                         
                                         st.plotly_chart(fig2, use_container_width=True)
                                         
-                                        status = "Excellent" if ats_score >= 80 else "Good" if ats_score >= 60 else "Needs Improvement"
+                                        status = "Отлично" if ats_score >= 80 else "Хорошо" if ats_score >= 60 else "Требует улучшения"
                                         st.markdown(f"<div style='text-align: center; font-weight: bold;'>{status}</div>", unsafe_allow_html=True)
 
                                     # Add Job Description Match Score if custom job description was used
@@ -2564,73 +2577,73 @@ class ResumeApp:
                                     section_styles = {
                                         "## Overall Assessment": """<div class="report-section">
                                             <h3 style="background: linear-gradient(90deg, #1e3a8a, #3b82f6); color: white; padding: 10px; border-radius: 5px;">
-                                                <i class="fas fa-chart-line"></i> Overall Assessment
+                                                <i class="fas fa-chart-line"></i> Общая оценка
                                             </h3>
                                             <div class="section-content">""",
                                             
                                         "## Professional Profile Analysis": """<div class="report-section">
                                             <h3 style="background: linear-gradient(90deg, #047857, #10b981); color: white; padding: 10px; border-radius: 5px;">
-                                                <i class="fas fa-user-tie"></i> Professional Profile Analysis
+                                                <i class="fas fa-user-tie"></i> Анализ компетенций и опыта
                                             </h3>
                                             <div class="section-content">""",
                                             
                                         "## Skills Analysis": """<div class="report-section">
                                             <h3 style="background: linear-gradient(90deg, #4f46e5, #818cf8); color: white; padding: 10px; border-radius: 5px;">
-                                                <i class="fas fa-tools"></i> Skills Analysis
+                                                <i class="fas fa-tools"></i> Анализ навыков
                                             </h3>
                                             <div class="section-content">""",
                                             
                                         "## Experience Analysis": """<div class="report-section">
                                             <h3 style="background: linear-gradient(90deg, #9f1239, #e11d48); color: white; padding: 10px; border-radius: 5px;">
-                                                <i class="fas fa-briefcase"></i> Experience Analysis
+                                                <i class="fas fa-briefcase"></i> Анализ опыта
                                             </h3>
                                             <div class="section-content">""",
                                             
                                         "## Education Analysis": """<div class="report-section">
                                             <h3 style="background: linear-gradient(90deg, #854d0e, #eab308); color: white; padding: 10px; border-radius: 5px;">
-                                                <i class="fas fa-graduation-cap"></i> Education Analysis
+                                                <i class="fas fa-graduation-cap"></i> Анализ образовательного уровня
                                             </h3>
                                             <div class="section-content">""",
                                             
                                         "## Key Strengths": """<div class="report-section">
                                             <h3 style="background: linear-gradient(90deg, #166534, #22c55e); color: white; padding: 10px; border-radius: 5px;">
-                                                <i class="fas fa-check-circle"></i> Key Strengths
+                                                <i class="fas fa-check-circle"></i> Сильные стороны
                                             </h3>
                                             <div class="section-content">""",
                                             
                                         "## Areas for Improvement": """<div class="report-section">
                                             <h3 style="background: linear-gradient(90deg, #9f1239, #fb7185); color: white; padding: 10px; border-radius: 5px;">
-                                                <i class="fas fa-exclamation-circle"></i> Areas for Improvement
+                                                <i class="fas fa-exclamation-circle"></i> Слабые стороны
                                             </h3>
                                             <div class="section-content">""",
                                             
                                         "## ATS Optimization Assessment": """<div class="report-section">
                                             <h3 style="background: linear-gradient(90deg, #0e7490, #06b6d4); color: white; padding: 10px; border-radius: 5px;">
-                                                <i class="fas fa-robot"></i> ATS Optimization Assessment
+                                                <i class="fas fa-robot"></i> Оценка соответствия ATS
                                             </h3>
                                             <div class="section-content">""",
                                             
                                         "## Recommended Courses": """<div class="report-section">
                                             <h3 style="background: linear-gradient(90deg, #5b21b6, #8b5cf6); color: white; padding: 10px; border-radius: 5px;">
-                                                <i class="fas fa-book"></i> Recommended Courses
+                                                <i class="fas fa-book"></i> Рекомендуем курсы
                                             </h3>
                                             <div class="section-content">""",
                                             
                                         "## Resume Score": """<div class="report-section">
                                             <h3 style="background: linear-gradient(90deg, #0369a1, #0ea5e9); color: white; padding: 10px; border-radius: 5px;">
-                                                <i class="fas fa-star"></i> Resume Score
+                                                <i class="fas fa-star"></i> Оценка резюме
                                             </h3>
                                             <div class="section-content">""",
                                             
                                         "## Role Alignment Analysis": """<div class="report-section">
                                             <h3 style="background: linear-gradient(90deg, #7c2d12, #ea580c); color: white; padding: 10px; border-radius: 5px;">
-                                                <i class="fas fa-bullseye"></i> Role Alignment Analysis
+                                                <i class="fas fa-bullseye"></i> Оценка соответствия должности
                                             </h3>
                                             <div class="section-content">""",
                                             
                                         "## Job Match Analysis": """<div class="report-section">
                                             <h3 style="background: linear-gradient(90deg, #4d7c0f, #84cc16); color: white; padding: 10px; border-radius: 5px;">
-                                                <i class="fas fa-handshake"></i> Job Match Analysis
+                                                <i class="fas fa-handshake"></i> Анализ соответствия вакансии
                                             </h3>
                                             <div class="section-content">""",
                                     }
@@ -2728,19 +2741,6 @@ class ResumeApp:
                                     )
 
                                     # PDF download button
-                                    if pdf_buffer:
-                                        st.download_button(
-                                            label="📊 Download PDF Report",
-                                            data=pdf_buffer,
-                                            file_name=f"resume_analysis_{datetime.now().strftime('%Y%m%d_%H%M')}.pdf",
-                                            mime="application/pdf",
-                                            use_container_width=True,
-                                            on_click=lambda: st.balloons()
-                                        )
-                                    else:
-                                        st.error("PDF generation failed. Please try again later.")
-                                else:
-                                    st.error(f"Analysis failed: {analysis_result.get('error', 'Unknown error')}")
                         except Exception as ai_error:
                             st.error(f"Error during AI analysis: {str(ai_error)}")
                             import traceback as tb
@@ -2774,7 +2774,6 @@ class ResumeApp:
             "Честный взгляд",
             "Получите доступ к подробной аналитике и персональным рекомендациям для улучшения карьерных перспектив."
         )
-        
 
         # Call-to-Action with Streamlit navigation
         col1, col2, col3 = st.columns([1, 1, 1])
@@ -2783,7 +2782,7 @@ class ResumeApp:
                         help="Click to start analyzing your resume",
                         type="primary",
                         use_container_width=True):
-                cleaned_name = "🔍 RESUME ANALYZER".lower().replace(" ", "_").replace("🔍", "").strip()
+                cleaned_name = "Анализ резюме".lower().replace(" ", "_").replace("🔍", "").strip()
                 st.session_state.page = cleaned_name
                 st.rerun()
 
@@ -2829,8 +2828,8 @@ class ResumeApp:
         
         # Admin login/logout in sidebar
         with st.sidebar:
-            st_lottie(self.load_lottie_url("https://assets5.lottiefiles.com/packages/lf20_xyadoh9h.json"), height=200, key="sidebar_animation")
-            st.title("HR Маминой Подруги")
+            st.image("https://i.postimg.cc/D0gKVMsp/Logo-bez-fona.png", width="stretch")
+            st.title("Цифровой ассистент рекрутер")
             st.markdown("---")
             
             # Navigation buttons
@@ -2839,39 +2838,62 @@ class ResumeApp:
                     cleaned_name = page_name.lower().replace(" ", "_").replace("🏠", "").replace("🔍", "").replace("📝", "").replace("📊", "").replace("🎯", "").replace("💬", "").replace("ℹ️", "").strip()
                     st.session_state.page = cleaned_name
                     st.rerun()
-
-            # Add some space before admin login
-            st.markdown("<br><br>", unsafe_allow_html=True)
             st.markdown("---")
 
+            st.sidebar.markdown("""
+            <div style="text-align: center; margin-bottom: 10px; font-weight: bold;">
+                Наши соцсети
+            </div>
+            <div style="display: flex; justify-content: center; gap: 20px; align-items: flex-start;">
+                 <div style="text-align: center;">
+                <a href="https://t.me/assistent_rekrutera" target="_blank">
+            <img src="https://www.svgrepo.com/show/452115/telegram.svg" 
+                 width="54" style="transition: transform 0.3s;" title="Telegram">
+                </a>
+            </div>
+            <div style="text-align: center;">
+                <a href="https://vk.com/assistent_rekrutera?from=groups" target="_blank">
+                    <img src="https://www.svgrepo.com/show/331634/vk-v2.svg" 
+                 width="50" style="transition: transform 0.3s;" title="Vk">
+                </a>
+            </div>
+        </div>
+
+        <style>
+        img:hover {
+            transform: scale(1.2);
+        }
+        </style>
+        """, unsafe_allow_html=True)
+            
             # Admin Login/Logout section at bottom
-            if st.session_state.get('is_admin', False):
-                st.success(f"Logged in as: {st.session_state.get('current_admin_email')}")
-                if st.button("Logout", key="logout_button"):
-                    try:
-                        log_admin_action(st.session_state.get('current_admin_email'), "logout")
-                        st.session_state.is_admin = False
-                        st.session_state.current_admin_email = None
-                        st.success("Logged out successfully!")
-                        st.rerun()
-                    except Exception as e:
-                        st.error(f"Error during logout: {str(e)}")
-            else:
-                with st.expander("👤 Admin Login"):
-                    admin_email_input = st.text_input("Email", key="admin_email_input")
-                    admin_password = st.text_input("Password", type="password", key="admin_password_input")
-                    if st.button("Login", key="login_button"):
-                            try:
-                                if verify_admin(admin_email_input, admin_password):
-                                    st.session_state.is_admin = True
-                                    st.session_state.current_admin_email = admin_email_input
-                                    log_admin_action(admin_email_input, "login")
-                                    st.success("Logged in successfully!")
-                                    st.rerun()
-                                else:
-                                    st.error("Invalid credentials")
-                            except Exception as e:
-                                st.error(f"Error during login: {str(e)}")
+            # if st.session_state.get('is_admin', False):
+            #     st.success(f"Logged in as: {st.session_state.get('current_admin_email')}")
+            #     if st.button("Logout", key="logout_button"):
+            #         try:
+            #             log_admin_action(st.session_state.get('current_admin_email'), "logout")
+            #             st.session_state.is_admin = False
+            #             st.session_state.current_admin_email = None
+            #             st.success("Logged out successfully!")
+            #             st.rerun()
+            #         except Exception as e:
+            #             st.error(f"Error during logout: {str(e)}")
+            # else:
+            #     with st.expander("👤 Admin Login"):
+            #         admin_email_input = st.text_input("Email", key="admin_email_input")
+            #         admin_password = st.text_input("Password", type="password", key="admin_password_input")
+            #         if st.button("Login", key="login_button"):
+            #                 try:
+            #                     if verify_admin(admin_email_input, admin_password):
+            #                         st.session_state.is_admin = True
+            #                         st.session_state.current_admin_email = admin_email_input
+            #                         log_admin_action(admin_email_input, "login")
+            #                         st.success("Logged in successfully!")
+            #                         st.rerun()
+            #                     else:
+            #                         st.error("Invalid credentials")
+            #                 except Exception as e:
+            #                     st.error(f"Error during login: {str(e)}")
         
             # Display the repository notification in the sidebar
             self.show_repo_notification()
