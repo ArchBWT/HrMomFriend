@@ -97,7 +97,7 @@ class ResumeAnalyzer:
         # Check for bullet points
         if not any(line.strip().startswith(('•', '-', '*', '→')) for line in lines):
             score -= 20
-            deductions.append("No bullet points found for listing details")
+            deductions.append("Не найдены маркеры (буллеты) для перечисления деталей")
             
         # Check for consistent spacing
         if any(len(line.strip()) == 0 and len(next_line.strip()) == 0 
@@ -113,7 +113,7 @@ class ResumeAnalyzer:
         ]
         if not any(re.search(pattern, text) for pattern in contact_patterns):
             score -= 15
-            deductions.append("Missing or improperly formatted contact information")
+            deductions.append("Отсутствует или неправильно оформлена контактная информация")
             
         return max(0, score), deductions
         
@@ -482,31 +482,31 @@ class ResumeAnalyzer:
             # Generate section-specific suggestions
             contact_suggestions = []
             if not personal_info.get('email'):
-                contact_suggestions.append("Add your email address")
+                contact_suggestions.append("Добавьте свой адрес электронной почты")
             if not personal_info.get('phone'):
-                contact_suggestions.append("Add your phone number")
+                contact_suggestions.append("Добавьте свой номер телефона")
             if not personal_info.get('linkedin'):
-                contact_suggestions.append("Add your LinkedIn profile URL")
+                contact_suggestions.append("Добавьте ссылку на ваш профиль hh")
             
             summary_suggestions = []
             if not summary:
-                summary_suggestions.append("Add a professional summary to highlight your key qualifications")
+                summary_suggestions.append("Добавьте профессиональное резюме, чтобы подчеркнуть ваши ключевые квалификации")
             elif len(summary.split()) < 30:
-                summary_suggestions.append("Expand your professional summary to better highlight your experience and goals")
+                summary_suggestions.append("Расширьте профессиональное резюме, чтобы лучше подчеркнуть ваш опыт и цели")
             elif len(summary.split()) > 100:
-                summary_suggestions.append("Consider making your summary more concise (aim for 50-75 words)")
+                summary_suggestions.append("Рассмотрите возможность сделать ваше резюме более кратким (ориентируйтесь на 50–75 слов)")
             
             skills_suggestions = []
             if not skills:
-                skills_suggestions.append("Add a dedicated skills section")
+                skills_suggestions.append("Добавьте отдельный раздел для навыков")
             if isinstance(skills, (list, set)) and len(list(skills)) < 5:
-                skills_suggestions.append("List more relevant technical and soft skills")
+                skills_suggestions.append("Перечислите больше соответствующих технических и мягких навыков")
             if keyword_match['score'] < 70:
-                skills_suggestions.append("Add more skills that match the job requirements")
+                skills_suggestions.append("Добавьте больше навыков, которые соответствуют требованиям вакансии")
             
             experience_suggestions = []
             if not experience:
-                experience_suggestions.append("Add your work experience section")
+                experience_suggestions.append("Добавьте раздел с опытом работы")
             else:
                 has_dates = any(re.search(r'\b(19|20)\d{2}\b', exp) for exp in experience)
                 has_bullets = any(re.search(r'[•\-\*]', exp) for exp in experience)
@@ -514,11 +514,11 @@ class ResumeAnalyzer:
                                                exp.lower()) for exp in experience)
                 
                 if not has_dates:
-                    experience_suggestions.append("Include dates for each work experience")
+                    experience_suggestions.append("Укажите даты для каждого места работы")
                 if not has_bullets:
-                    experience_suggestions.append("Use bullet points to list your achievements and responsibilities")
+                    experience_suggestions.append("Используйте ключи для перечисления ваших достижений и обязанностей")
                 if not has_action_verbs:
-                    experience_suggestions.append("Start bullet points with strong action verbs")
+                    experience_suggestions.append("Начинайте пункты с сильных глаголов действия")
             
             education_suggestions = []
             if not education:
@@ -531,11 +531,11 @@ class ResumeAnalyzer:
                                       edu.lower()) for edu in education)
                 
                 if not has_dates:
-                    education_suggestions.append("Include graduation dates")
+                    education_suggestions.append("Укажите даты окончания учебы")
                 if not has_degree:
-                    education_suggestions.append("Specify your degree type")
+                    education_suggestions.append("Укажите тип вашей степени")
                 if not has_gpa and job_requirements.get('require_gpa', False):
-                    education_suggestions.append("Include your GPA if it's above 3.0")
+                    education_suggestions.append("Укажите ваш средний балл, если он выше 3.0")
             
             format_suggestions = []
             if format_score < 100:

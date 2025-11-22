@@ -193,41 +193,41 @@ class AIResumeAnalyzer:
             model = genai.GenerativeModel("gemini-2.5-flash")
             
             base_prompt = f"""
-            You are an expert resume analyst with deep knowledge of industry standards, job requirements, and hiring practices across various fields. Your task is to provide a comprehensive, detailed analysis of the resume provided.
+            Вы являетесь экспертом по анализу резюме с глубокими знаниями отраслевых стандартов, требований к должностям и практик найма в различных сферах. Ваша задача — предоставить всесторонний, детализированный анализ предоставленного резюме,
             
-            Please structure your response in the following format:
+            Пожалуйста, структурируйте свой ответ в следующем формате:
             
             ## Overall Assessment
-            [Provide a detailed assessment of the resume's overall quality, effectiveness, and alignment with industry standards. Include specific observations about formatting, content organization, and general impression. Be thorough and specific.]
+            [Предоставьте подробную оценку общего качества резюме, его эффективности и соответствия отраслевым стандартам. Включите конкретные наблюдения о формате, организации содержания и общем впечатлении. Будьте тщательны и конкретны.]
             
             ## Professional Profile Analysis
-            [Analyze the candidate's professional profile, experience trajectory, and career narrative. Discuss how well their story comes across and whether their career progression makes sense for their apparent goals.]
+            [Проанализируйте профессиональный профиль кандидата, траекторию опыта и карьерный путь. Обсудите, насколько хорошо их история представлена и логична ли их карьерная прогрессия в контексте предполагаемых целей.]
             
             ## Skills Analysis
-            - **Current Skills**: [List ALL skills the candidate demonstrates in their resume, categorized by type (technical, soft, domain-specific, etc.). Be comprehensive.]
-            - **Skill Proficiency**: [Assess the apparent level of expertise in key skills based on how they're presented in the resume]
-            - **Missing Skills**: [List important skills that would improve the resume for their target role. Be specific and explain why each skill matters.]
+            - **Текущие навыки**: [Перечислите ВСЕ навыки, которые демонстрирует кандидат в резюме, с категоризацией по типу (технические, мягкие, специфичные для отрасли и т.д.). Будьте максимально подробны.]
+            - **Уровень владения навыками**: [Оцените предполагаемый уровень компетенции в ключевых навыках на основе того, как они представлены в резюме]
+            - **Отсутствующие навыки**: [Перечислите важные навыки, которые улучшили бы резюме для целевой должности. Будьте конкретны и объясните, почему каждый навык важен.]
             
             ## Experience Analysis
-            [Provide detailed feedback on how well the candidate has presented their experience. Analyze the use of action verbs, quantifiable achievements, and relevance to their target role. Suggest specific improvements.]
+            [Предоставьте подробную обратную связь о том, насколько эффективно кандидат представил свой опыт. Проанализируйте использование глаголов действия, количественные достижения и релевантность целевой должности. Предложите конкретные улучшения.]
             
             ## Education Analysis
-            [Analyze the education section, including relevance of degrees, certifications, and any missing educational elements that would strengthen their profile.]
+            [Проанализируйте раздел образования, включая актуальность полученных степеней, сертификатов и отсутствующие элементы, которые могли бы укрепить профиль.]
             
             ## Key Strengths
-            [List 5-7 specific strengths of the resume with detailed explanations of why these are effective]
+            [Перечислите 5-7 конкретных сильных сторон резюме с подробным объяснением, почему они эффективны.]
             
             ## Areas for Improvement
-            [List 5-7 specific areas where the resume could be improved with detailed, actionable recommendations]
+            [Перечислите 5-7 конкретных областей, где резюме можно улучшить, с подробными, практическими рекомендациями.]
             
             ## ATS Optimization Assessment
-            [Analyze how well the resume is optimized for Applicant Tracking Systems. Provide a specific ATS score from 0-100, with 100 being perfectly optimized. Use this format: "ATS Score: XX/100". Then suggest specific keywords and formatting changes to improve ATS performance.]
+            [Проанализируйте, насколько хорошо резюме оптимизировано для систем отслеживания кандидатов (ATS). Укажите конкретный ATS-балл от 0 до 100, где 100 — идеальная оптимизация. Используйте формат: "ATS Score: XX/100". Затем предложите конкретные ключевые слова и изменения форматирования для улучшения производительности ATS.]
             
-            ## Recommended Courses/Certifications
-            [Suggest 5-7 specific courses or certifications that would enhance the candidate's profile, with a brief explanation of why each would be valuable]
+            ## Recommended Courses
+            [Предложите 5-7 конкретных курсов или сертификатов, которые улучшат профиль кандидата, с кратким объяснением, почему каждый будет ценен.]
             
             ## Resume Score
-            [Provide a score from 0-100 based on the overall quality of the resume. Use this format exactly: "Resume Score: XX/100" where XX is the numerical score. Be consistent with your assessment - a resume with significant issues should score below 60, an average resume 60-75, a good resume 75-85, and an excellent resume 85-100.]
+            [Provide a score from 0-100 based on the overall quality of the resume. Use this format exactly: "XX/100" where XX is the numerical score. Be consistent with your assessment - a resume with significant issues should score below 60, an average resume 60-75, a good resume 75-85, and an excellent resume 85-100.]
             
             Resume:
             {resume_text}
@@ -236,25 +236,25 @@ class AIResumeAnalyzer:
             if job_role:
                 base_prompt += f"""
                 
-                The candidate is targeting a role as: {job_role}
+                Кандидат претендует на должность: {job_role}
                 
                 ## Role Alignment Analysis
-                [Analyze how well the resume aligns with the target role of {job_role}. Provide specific recommendations to better align the resume with this role.]
+                [Проанализируйте, насколько резюме соответствует целевой должности {job_role}. Предоставьте конкретные рекомендации, как лучше адаптировать резюме под эту должность.]
                 """
             
             if job_description:
                 base_prompt += f"""
                 
-                Additionally, compare this resume to the following job description:
+                Кроме того, сравните это резюме со следующим описанием вакансии:
                 
                 Job Description:
                 {job_description}
                 
                 ## Job Match Analysis
-                [Provide a detailed analysis of how well the resume matches the job description, with a match percentage and specific areas of alignment and misalignment]
+                [Предоставьте подробный анализ того, насколько резюме соответствует описанию вакансии, укажите процент совпадения и конкретные области соответствия и несоответствия]
                 
                 ## Key Job Requirements Not Met
-                [List specific requirements from the job description that are not addressed in the resume, with recommendations on how to address each gap]
+                [Перечислите конкретные требования из описания вакансии, которые не отражены в резюме, с рекомендациями, как устранить каждый пробел]
                 """
             
             response = model.generate_content(base_prompt)
@@ -324,7 +324,7 @@ class AIResumeAnalyzer:
                 return None
                 
             # Print debug info
-            st.info(f"Generating PDF report for {candidate_name} targeting {job_role}")
+            st.info(f"Каждое достижение в резюме — это шаг к желаемой должности!")
             
             # Create a buffer for the PDF
             buffer = io.BytesIO()
@@ -1187,7 +1187,7 @@ class AIResumeAnalyzer:
             print(f"Error extracting ATS score: {str(e)}")
             return 0
             
-    def analyze_resume(self, resume_text, job_role=None, role_info=None, model="Google Gemini"):
+    def analyze_resume(self, resume_text="Отвечай на русском", job_role=None, role_info=None, model="Google Gemini"):
         """
         Analyze a resume using the specified AI model
         
@@ -1200,6 +1200,7 @@ class AIResumeAnalyzer:
         Returns:
         - Dictionary containing analysis results
         """
+        
         import traceback
         
         try:
