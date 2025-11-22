@@ -1738,12 +1738,12 @@ class ResumeApp:
                         </style>
                         """, unsafe_allow_html=True)
 
-                        col1, col2, col3 = st.columns(3)
+                        col1, col2 = st.columns(2)
 
                         with col1:
                             st.markdown(f"""
                             <div class="stats-card">
-                                <div class="stats-label">Общее количество анализов ИИ</div>
+                                <div class="stats-label">Общее количество</div>
                                 <div class="stats-value">{ai_stats["total_analyses"]}</div>
                             </div>
                             """, unsafe_allow_html=True)
@@ -1758,35 +1758,6 @@ class ResumeApp:
                                 <div class="stats-value">{ai_stats["average_score"]}/100</div>
                             </div>
                             """, unsafe_allow_html=True)
-
-                        with col3:
-                            # Create a gauge chart for average score
-                            import plotly.graph_objects as go
-                            fig = go.Figure(go.Indicator(
-                                mode="gauge+number",
-                                value=ai_stats["average_score"],
-                                domain={'x': [0, 1], 'y': [0, 1]},
-                                title={
-                 'font': {
-        'size': 14, 'color': 'white'}},
-                                gauge={
-                                    'axis': {'range': [0, 100], 'tickwidth': 1, 'tickcolor': "white"},
-                                    'bar': {'color': "#38ef7d" if ai_stats["average_score"] >= 80 else "#FFEB3B" if ai_stats["average_score"] >= 60 else "#FF5252"},
-                                    'bgcolor': "rgba(0,0,0,0)",
-                                    'borderwidth': 2,
-                                    'bordercolor': "white",
-                                }
-                            ))
-
-                            fig.update_layout(
-                                paper_bgcolor='rgba(0,0,0,0)',
-                                plot_bgcolor='rgba(0,0,0,0)',
-                                font={'color': "white"},
-                                height=150,
-                                margin=dict(l=10, r=10, t=30, b=10)
-                            )
-
-                            st.plotly_chart(fig, use_container_width=True)
 
                         # Display model usage with enhanced visualization
                         if ai_stats["model_usage"]:
